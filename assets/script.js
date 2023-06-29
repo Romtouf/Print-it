@@ -29,16 +29,10 @@ let bannerText = banner.querySelector("p");
 // Compteur pour le slide
 let affichageSlide = 0;
 
-// Au clic, augmenter ou réduire le chiffre affiché(100) sur la page du site Print it
+// Au clic, faire défiler le carrousel
 arrowLeft.addEventListener("click", () => {
   // alert("Ok pour la flèche de gauche");
-  // affichageSlide = (affichageSlide - 1 + slides.length) % slides.length;
-  // affichageSlide = affichageSlide - 1;
-  // if (affichageSlide < 0) {
-  //   affichageSlide = 3;
-  // }
-  // bannerImage.src = slides[affichageSlide].image;
-  // bannerText.innerHTML = slides[affichageSlide].tagLine;
+
   bannerContenu();
   dotChangeOnClick();
   bannerBoucle(-1);
@@ -46,17 +40,12 @@ arrowLeft.addEventListener("click", () => {
 arrowRight.addEventListener("click", () => {
   // alert("Ok pour la flèche de droite");
 
-  // affichageSlide = affichageSlide + 1;
-  // if (affichageSlide > 3) {
-  //   affichageSlide = 0;
-  // }
-
-  // bannerText.innerHTML = slides[affichageSlide].tagLine;
   bannerContenu();
   dotChangeOnClick();
   bannerBoucle(1);
 });
 
+// Changer le point affiché au clic
 function dotChangeOnClick() {
   bannerDots.forEach((bullets, i) => {
     bullets.classList.remove("dot_selected");
@@ -67,11 +56,13 @@ function dotChangeOnClick() {
   });
 }
 
+// Intégrer le contenu du slider
 function bannerContenu() {
   bannerImage.src = slides[affichageSlide].image;
   bannerText.innerHTML = slides[affichageSlide].tagLine;
 }
 
+// Sens de défilement du slide selon la flèche cliquée
 function bannerBoucle(sens) {
   affichageSlide = affichageSlide + sens;
   if (affichageSlide > slides.length - 1) {
